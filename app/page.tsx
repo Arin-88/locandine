@@ -76,7 +76,7 @@ type PreviewType = (typeof PREVIEW_TYPES)[number];
 type ProxyEnabledTypes = Record<ProxyType, boolean>;
 type AiometadataPatternType = 'poster' | 'background' | 'logo' | 'episodeThumbnail';
 type AiometadataEpisodeProvider = 'tvdb' | 'realimdb';
-type ProxyEpisodeProvider = 'tmdb' | 'tvdb' | 'realimdb';
+type ProxyEpisodeProvider = 'custom' | 'realimdb';
 type StreamBadgesSetting = 'auto' | 'on' | 'off';
 type QualityBadgesSide = 'left' | 'right';
 type PosterQualityBadgesPosition = 'auto' | QualityBadgesSide;
@@ -128,7 +128,7 @@ const isBackdropRatingLayout = (value: unknown): value is BackdropRatingLayout =
 const isThumbnailRatingLayout = (value: unknown): value is ThumbnailRatingLayout =>
   THUMBNAIL_RATING_LAYOUT_OPTIONS.some((option) => option.id === value);
 const isProxyEpisodeProvider = (value: unknown): value is ProxyEpisodeProvider =>
-  value === 'tmdb' || value === 'tvdb' || value === 'realimdb';
+  value === 'custom' || value === 'realimdb';
 const isAiometadataEpisodeProvider = (value: unknown): value is AiometadataEpisodeProvider =>
   value === 'tvdb' || value === 'realimdb';
 
@@ -499,7 +499,7 @@ export default function Home() {
   const [tmdbKey, setTmdbKey] = useState('');
   const [simklClientId, setSimklClientId] = useState('');
   const [proxyManifestUrl, setProxyManifestUrl] = useState('');
-  const [proxyAiometadataProvider, setProxyAiometadataProvider] = useState<ProxyEpisodeProvider>('tmdb');
+  const [proxyAiometadataProvider, setProxyAiometadataProvider] = useState<ProxyEpisodeProvider>('custom');
   const [proxyEnabledTypes, setProxyEnabledTypes] = useState<ProxyEnabledTypes>({
     poster: true,
     backdrop: true,
